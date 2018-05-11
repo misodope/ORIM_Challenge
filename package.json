@@ -1,0 +1,38 @@
+{
+  "name": "orim_challenge",
+  "version": "1.0.0",
+  "description": "Boilerplate Jerry Chen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "server-dev": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misodope/ORIM_Challenge.git"
+  },
+  "author": "Jerry Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/misodope/ORIM_Challenge/issues"
+  },
+  "homepage": "https://github.com/misodope/ORIM_Challenge#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.4",
+    "path": "^0.12.7",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3"
+  }
+}
