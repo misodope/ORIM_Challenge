@@ -8,14 +8,14 @@ class Pagination extends React.Component {
 
   render() {
     let previousButton;
-    if (this.props.lastBookDisplay === null || this.props.lastBookDisplay === 0) {
+    if (this.props.lastBookDisplay === null || this.props.lastBookDisplay === 0 || !this.props.searchSuccess) {
       previousButton = <button onClick={() => this.props.getPreviousBooks()} disabled>Previous</button>
     } else {
       previousButton = <button onClick={() => this.props.getPreviousBooks()}>Previous</button>
     }
 
     let nextButton;
-    if (this.props.currentBookDisplay >= this.props.maxBooks) {
+    if (this.props.currentBookDisplay >= this.props.maxBooks || !this.props.searchSuccess) {
       nextButton = <button onClick={() => this.props.getBooks()} disabled>Next</button>
     } else {
       nextButton = <button onClick={() => this.props.getBooks()}>Next</button>

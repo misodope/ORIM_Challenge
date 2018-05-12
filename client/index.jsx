@@ -15,6 +15,7 @@ class App extends React.Component {
       currentBookDisplay: 0,
       lastBookDisplay: null,
       maxBooks: null,
+      searchSuccess: true,
     }
 
     this.getBooks = this.getBooks.bind(this);
@@ -27,7 +28,6 @@ class App extends React.Component {
   }
 
   getBooks() {
-    console.log('NEXT WAS CALLED');
     axios.get('/next/books', {
       params: {
         currentBookDisplay: this.state.currentBookDisplay,
@@ -79,18 +79,19 @@ class App extends React.Component {
         }
       })
         .then((results) => {
-          console.log(results);
           this.setState({
             currentBooks: results.data.showBooks,
             currentBookDisplay: results.data.currentBooks,
             lastBookDisplay: results.data.lastBooks,
-            maxBooks: results.data.maxBooks
+            maxBooks: results.data.maxBooks,
+            searchSuccess: true
           })
-          console.log(this.state.searchedBooks, this.state.lastBookDisplay, this.state.currentBookDisplay)
         })
         .catch((error) => {
-          console.log(error);
-        })
+          this.setState({
+            searchSuccess: false
+          });
+        });
     });
   }
 
@@ -104,6 +105,8 @@ class App extends React.Component {
           />
         </div>
         {
+          this.state.searchSuccess
+          ?
           this.state.currentBooks.map((book, i) => (
             <Book
               key={i}
@@ -116,15 +119,20 @@ class App extends React.Component {
               publisher={book.publisher}
               isbn={book.primary_isbn}
               author={book.authors[0].display_name}
+              rank={book.amazon_rank}
+              genre={book.primary_bisacs[0]}
             />
           ))
+          :
+          <h1 className='searchFailHeader'>Our Apologies, we can't seem to find what you're looking for. Please try again.</h1>
         }
         <Pagination
           getBooks={this.getBooks}
           getPreviousBooks={this.getPreviousBooks}
           lastBookDisplay={this.state.lastBookDisplay}
           currentBookDisplay={this.state.currentBookDisplay}
-          maxBooks = {this.state.maxBooks}
+          maxBooks={this.state.maxBooks}
+          searchSuccess={this.state.searchSuccess}
         />
       </div>
     )

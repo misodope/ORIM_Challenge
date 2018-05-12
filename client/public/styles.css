@@ -48,6 +48,16 @@ body {
 .book img {
   max-width: 90%;
   max-height: 70%;
+  cursor: pointer;
+}
+
+.bookDetails {
+  text-align: center;
+  cursor: pointer;
+}
+
+.searchFailHeader {
+  grid-column: 2 / 6;
 }
 
 .pagination {
