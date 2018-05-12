@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: 'Pontano Sans', sans-serif;
+}
+.grid-wrapper {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 43vh 43vh auto;
+  display: grid;
+  background-color: rgb(241, 241, 241);
+}
+
+.grid-title {
+  grid-row: 1;
+  grid-column: 1 / 6;
+  display: inline-grid;
+  margin-bottom: 1%;
+  background-color: rgb(53, 157, 224);
+  color: White;
+  font-size: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.grid-title h1 {
+  margin-left: 2%;
+}
+
+.search {
+  margin-top: 8%;
+  grid-row: 1;
+  grid-column: 5;
+}
+
+.search button {
+  border: none;
+  border-radius: none;
+  margin-left: 2%;
+  padding: 1% 8%;
+}
+
+.search input {
+  padding: 1% 1%;
+}
+
+.book {
+  text-align: center;
+}
+
+.book img {
+  max-width: 90%;
+  max-height: 70%;
+}
+
+.pagination {
+  grid-row: 4;
+  grid-column: 3 / 4;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 1% 10%;
+  margin: 1%;
+  border: none;
+  border-radius: none;
+  background-color: rgb(48, 163, 236);
+  color: white;
+  font-size: 1em;
+}
+
+button:disabled,
+  button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
