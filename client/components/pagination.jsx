@@ -1,32 +1,27 @@
 import React from 'react';
 
-class Pagination extends React.Component {
-  constructor(props) {
-    super(props);
 
+const Pagination = (props) => {
+  let previousButton = null;
+  if (props.lastBookDisplay === null || props.lastBookDisplay === 0 || !props.searchSuccess) {
+    previousButton = <button onClick={() => props.getPreviousBooks()} disabled>Previous</button>
+  } else {
+    previousButton = <button onClick={() => props.getPreviousBooks()}>Previous</button>
   }
 
-  render() {
-    let previousButton;
-    if (this.props.lastBookDisplay === null || this.props.lastBookDisplay === 0 || !this.props.searchSuccess) {
-      previousButton = <button onClick={() => this.props.getPreviousBooks()} disabled>Previous</button>
-    } else {
-      previousButton = <button onClick={() => this.props.getPreviousBooks()}>Previous</button>
-    }
-
-    let nextButton;
-    if (this.props.currentBookDisplay >= this.props.maxBooks || !this.props.searchSuccess) {
-      nextButton = <button onClick={() => this.props.getBooks()} disabled>Next</button>
-    } else {
-      nextButton = <button onClick={() => this.props.getBooks()}>Next</button>
-    }
-    return (
-      <div className='pagination'>
-        {previousButton}
-        {nextButton}
-      </div>
-    )
+  let nextButton = null;
+  if (props.currentBookDisplay >= props.maxBooks || !props.searchSuccess) {
+    nextButton = <button onClick={() => props.getBooks()} disabled>Next</button>
+  } else {
+    nextButton = <button onClick={() => props.getBooks()}>Next</button>
   }
+  
+  return (
+    <div className='pagination'>
+      {previousButton}
+      {nextButton}
+    </div>
+  )
 }
 
 export default Pagination;

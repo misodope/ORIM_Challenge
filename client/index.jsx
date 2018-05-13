@@ -21,6 +21,7 @@ class App extends React.Component {
     this.getBooks = this.getBooks.bind(this);
     this.getPreviousBooks = this.getPreviousBooks.bind(this);
     this.searchBooks = this.searchBooks.bind(this);
+    this.resetBooks = this.resetBooks.bind(this);
   }
 
   componentDidMount() {
@@ -95,11 +96,24 @@ class App extends React.Component {
     });
   }
 
+  resetBooks() {
+    axios.get('/reset')
+      .then(() => {
+        this.setState({
+          currentBookDisplay: 0,
+          currentBooks: [],
+          lastBookDisplay: null,
+          maxBooks: null,
+          searchSuccess: true,
+        }, () => this.getBooks())
+      })
+  }
+
   render() {
     return (
       <div className='grid-wrapper'>
         <div className='grid-title'>
-          <h1>OCIM Book Collection</h1>
+          <h1 onClick={this.resetBooks}>OCIM Book Collection</h1>
           <Search
             searchBooks={this.searchBooks}
           />
@@ -120,7 +134,7 @@ class App extends React.Component {
               isbn={book.primary_isbn}
               author={book.authors[0].display_name}
               rank={book.amazon_rank}
-              genre={book.primary_bisacs[0]}
+              genre={book.primary_bisacs}
             />
           ))
           :

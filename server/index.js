@@ -15,7 +15,7 @@ let maxBooks = books.length;
 let searchedBooks = []
 
 app.get('/next/books', (req, res) => {
-  let showBooks;
+  let showBooks = null;
   let currentBookDisplay = parseInt(req.query.currentBookDisplay);
   let lastBooks = currentBookDisplay;
   let currentBooks = currentBookDisplay + 10;
@@ -31,7 +31,7 @@ app.get('/next/books', (req, res) => {
 });
 
 app.get('/previous/books', (req, res) => {
-  let showBooks, currentBooks, lastBooks;
+  let showBooks = currentBooks = lastBooks = null;
 
   let lastBookDisplay = parseInt(req.query.lastBookDisplay);
   //If there are no searched books, look at the entire book collection
@@ -65,7 +65,7 @@ app.get('/search/books', (req, res) => {
   //Set searched query to all lowercase letters
   let searchLowerCase = req.query.search.toLowerCase();
   //Intialize books index variables
-  let showBooks, currentBooks, lastBooks, currentBookDisplay;
+  let showBooks = currentBooks = lastBooks = currentBookDisplay = null;
   //Loops through each book and check if the book title includes the search query.
   for (let i = 0; i < books.length; i++) {
     let book = books[i];
@@ -87,7 +87,7 @@ app.get('/search/books', (req, res) => {
   }
 })
 
-app.get('/', (req, res) => {
+app.get('/reset', (req, res) => {
   searchedBooks.length = 0;
   res.send(path.join(__dirname, '../client/public'));
 })
